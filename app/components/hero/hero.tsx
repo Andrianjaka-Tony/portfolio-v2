@@ -13,7 +13,7 @@ export function Hero() {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-between">
+      <div className="w-full flex justify-between items-end">
         <p className="font-playfair text-2xl">Let's create something amazing together.</p>
         <p>Get in touch</p>
       </div>
