@@ -13,6 +13,9 @@ export default {
         foreground: "var(--foreground)",
       },
     },
+    fontFamily: {
+      playfair: ["Playfair Display"],
+    },
   },
   plugins: [],
 } satisfies Config;
