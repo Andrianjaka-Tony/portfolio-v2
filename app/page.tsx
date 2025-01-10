@@ -9,7 +9,7 @@ import { ProjectText } from "./components/project/project-text";
 
 const projects: Project[] = [
   {
-    name: "Vahatra",
+    name: "Vahatra - Human Ressources",
     image: "/images/new-york.jpg",
   },
   {
@@ -21,7 +21,7 @@ const projects: Project[] = [
     image: "/images/amsterdam.webp",
   },
   {
-    name: "Apollo",
+    name: "Apollo - Art Museum",
     image: "/images/kyoto.jpg",
   },
 ];
@@ -39,7 +39,7 @@ export default function Home() {
 
   return (
     <div className="relative w-screen h-screen">
-      <ProjectBackground />
+      <ProjectBackground projects={projects} currentIndex={currentIndex} />
       <AnimatePresence mode="sync">
         {projects.map((project, index) => {
           const active = currentIndex;

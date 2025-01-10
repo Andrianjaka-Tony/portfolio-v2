@@ -17,7 +17,7 @@ export default function RootLayout({
       <body className="bg-background text-foreground">
         <div className="z-10 py-8 text-xl fixed w-screen flex justify-center gap-8">
           <p>Work</p>
-          <p>About</p>
+          <p className="opacity-40">About</p>
         </div>
         <ReactLenis root>{children}</ReactLenis>
       </body>
