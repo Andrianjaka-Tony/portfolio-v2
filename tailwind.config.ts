@@ -14,7 +14,7 @@ export default {
       },
     },
     fontFamily: {
-      playfair: ["Playfair Display"],
+      // playfair: ["Playfair Display"],
     },
   },
   plugins: [],

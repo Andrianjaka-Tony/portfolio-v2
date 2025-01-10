@@ -2,14 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: Playfair Display;
-  src: url("./font/PlayfairDisplay.ttf");
-}
-
 :root {
-  --background: #ececec;
-  --foreground: #000000;
+  --foreground: #ececec;
+  --background: #111;
 }
 
 body {
