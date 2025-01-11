@@ -38,7 +38,7 @@ export default function Home() {
   });
 
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative overflow-hidden w-screen h-screen">
       <ProjectBackground projects={projects} currentIndex={currentIndex} />
       <AnimatePresence mode="sync">
         {projects.map((project, index) => {
