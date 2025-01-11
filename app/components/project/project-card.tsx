@@ -20,10 +20,13 @@ const classNames = {
 
 const variants: Variants = {
   initial: {
+    opacity: 0,
     clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
   },
   animate: {
+    opacity: 1,
     clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+    rotate: 0,
   },
   exit: {
     opacity: 0,
@@ -44,22 +47,24 @@ const variants: Variants = {
     y: "-50%",
   },
   left: {
-    height: "150px",
-    width: "200px",
+    height: "600px",
+    width: "450px",
     top: "50%",
     left: "5%",
     right: "0%",
-    x: "0%",
+    x: "-25%",
     y: "-50%",
+    clipPath: "polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%)",
   },
   right: {
-    height: "150px",
-    width: "200px",
+    height: "600px",
+    width: "450px",
     top: "50%",
     left: "95%",
     right: "50%",
-    x: "-100%",
+    x: "-75%",
     y: "-50%",
+    clipPath: "polygon(25% 25%, 75% 25%, 75% 75%, 25% 75%)",
   },
 };
 

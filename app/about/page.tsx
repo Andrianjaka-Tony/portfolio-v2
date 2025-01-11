@@ -1,98 +1,131 @@
+import { AnimeParagraphs, AnimeRow } from "../components/anime-text/anime-word";
+
 function Presentation() {
   return (
-    <div className="flex flex-col gap-12">
-      <p className="text-4xl leading-snug">
-        Hello, my name is Tony, I'm a Creative Developer based at Madagascar at the start of my
-        journey.
-      </p>
-      <p className="text-4xl leading-snug">
-        I specialize in development, focusing on crafting intuitive, visually appealing, and
-        efficient user interfaces for seamless user experiences.
-      </p>
-      <p className="text-4xl leading-snug">
-        I love exploring new ideas, solving problems, and finding innovative ways to bring projects
-        to life. My curiosity keeps me motivated to learn and grow every day.
-      </p>
+    <div className="flex flex-col">
+      <AnimeParagraphs
+        paragraphs={[
+          [
+            "Hello, my name is Tony, I'm a Creative Developer",
+            "based at Madagascar at the start of my journey.",
+          ],
+          [
+            "I specialize in development, focusing on crafting",
+            "intuitive, visually appealing, and efficient user",
+            "interfaces for seamless user experiences.",
+          ],
+          [
+            "I love exploring new ideas, solving problems,",
+            "and finding innovative ways to bring projects to",
+            "life. My curiosity keeps me motivated to learn",
+            "and grow every day.",
+          ],
+        ]}
+        className="text-3xl leading-snug gap-12"
+      />
+    </div>
+  );
+}
+
+type SectionItem = {
+  titles?: string[];
+  values?: string[];
+};
+
+function SectionItem({ titles = [], values = [] }: SectionItem) {
+  const mt = titles.length > 0 ? "mt-6" : "mt-0";
+
+  return (
+    <div className="px-16">
+      {titles.length > 0 && <AnimeRow rows={titles} className="flex flex-col text-3xl gap-1" />}
+      {values.length > 0 && <AnimeRow rows={values} className={`${mt} flex flex-col opacity-50`} />}
+    </div>
+  );
+}
+
+type SectionProps = {
+  title: string;
+  items: SectionItem[];
+};
+
+function Section({ title, items }: SectionProps) {
+  return (
+    <div className="flex flex-col">
+      <AnimeRow rows={[title]} className="text-3xl leading-snug" />
+      <div className="flex flex-col gap-12 mt-16">
+        {items.map((item, index) => (
+          <SectionItem {...item} key={index} />
+        ))}
+      </div>
     </div>
   );
 }
 
 function WorkingExperience() {
   return (
-    <div className="flex flex-col">
-      <p className="text-4xl leading-snug">Experience</p>
-      <div className="flex flex-col gap-12 mt-16">
-        <div className="px-16">
-          <div className="text-4xl">Junior Developer</div>
-          <div className="text-4xl mt-1">Vahatra Corporation</div>
-          <div className="mt-6 opacity-50">2024 - 2025</div>
-        </div>
-      </div>
-    </div>
+    <Section
+      title="Experience"
+      items={[
+        {
+          titles: ["Junior Developer", "Vahatra Corporation"],
+          values: ["2024 - 2025"],
+        },
+      ]}
+    />
   );
 }
 
 function Education() {
   return (
-    <div className="flex flex-col">
-      <p className="text-4xl leading-snug">Education</p>
-      <div className="flex flex-col gap-12 mt-16">
-        <div className="px-16">
-          <div className="text-4xl">Master's student in Computer Science</div>
-          <div className="text-4xl mt-1">IT University</div>
-          <div className="mt-6 opacity-50">2024 - Now</div>
-        </div>
-        <div className="px-16">
-          <div className="text-4xl">Bachelor of Computer Science</div>
-          <div className="text-4xl mt-1">IT University</div>
-          <div className="mt-6 opacity-50">2021 - 2024</div>
-        </div>
-      </div>
-    </div>
+    <Section
+      title="Education"
+      items={[
+        {
+          titles: ["Master's student in Computer Science", "IT University"],
+          values: ["2024 - Now"],
+        },
+        {
+          titles: ["Bachelor of Computer Science", "IT University"],
+          values: ["2021 - 2024"],
+        },
+      ]}
+    />
   );
 }
 
 function Technologies() {
   return (
-    <div className="flex flex-col">
-      <p className="text-4xl leading-snug">Technologies</p>
-      <div className="flex flex-col gap-12 mt-16">
-        <div className="px-16">
-          <div className="text-4xl">Frontend</div>
-          <div className="mt-6 opacity-50">Tailwind</div>
-          <div className="mt-0 opacity-50">TypeScript</div>
-          <div className="mt-0 opacity-50">React</div>
-          <div className="mt-0 opacity-50">Next</div>
-          <div className="mt-0 opacity-50">Motion</div>
-        </div>
-        <div className="px-16">
-          <div className="text-4xl">Backend</div>
-          <div className="mt-6 opacity-50">Java</div>
-          <div className="mt-0 opacity-50">Spring-Boot</div>
-        </div>
-        <div className="px-16">
-          <div className="text-4xl">Database</div>
-          <div className="mt-6 opacity-50">PostgreSQL</div>
-        </div>
-      </div>
-    </div>
+    <Section
+      title="Technologies"
+      items={[
+        {
+          titles: ["Frontend"],
+          values: ["Tailwind", "TypeScript", "React", "Next", "Motion"],
+        },
+        {
+          titles: ["Backend"],
+          values: ["Java", "Spring-Boot"],
+        },
+        {
+          titles: ["Database"],
+          values: ["PostgreSQL"],
+        },
+      ]}
+    />
   );
 }
 
 function GetInTouch() {
   return (
-    <div className="flex flex-col">
-      <p className="text-4xl leading-snug">Get In Touch</p>
-      <div className="flex flex-col gap-12 mt-16">
-        <div className="px-16">
-          <div className="opacity-50">Email</div>
-          <div className="opacity-50">Instagram</div>
-          <div className="opacity-50">X</div>
-          <div className="opacity-50">Linkedin</div>
-          <div className="opacity-50">Facebook</div>
-        </div>
-      </div>
-    </div>
+    <Section
+      title="Get In Touch"
+      items={[
+        {
+          titles: [],
+          values: ["Email", "Instagram", "X", "Linkedin", "Facebook"],
+        },
+      ]}
+    />
   );
 }
 

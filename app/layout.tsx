@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="bg-background text-foreground">
-        <div className="z-10 py-8 text-xl fixed w-screen flex justify-center gap-8">
+        <div className="z-10 py-8 text-xl fixed w-screen flex justify-center gap-12">
           <p>Work</p>
           <p className="opacity-40">About</p>
         </div>
