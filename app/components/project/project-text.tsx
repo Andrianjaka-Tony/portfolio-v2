@@ -16,7 +16,7 @@ export function ProjectText({ name }: Props) {
           },
         }}
         text={name}
-        className="text-5xl uppercase"
+        className="text-7xl font-semibold leading-normal uppercase"
       />
     </div>
   );

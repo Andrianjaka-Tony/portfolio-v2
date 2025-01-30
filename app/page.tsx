@@ -3,28 +3,10 @@
 import { AnimatePresence, useMotionValue, useMotionValueEvent } from "motion/react";
 import { ProjectBackground } from "./components/project/project-background";
 import { ProjectCard } from "./components/project/project-card";
-import { Project } from "./type";
 import { useState } from "react";
 import { ProjectText } from "./components/project/project-text";
-
-const projects: Project[] = [
-  {
-    name: "Vahatra - Human Ressources",
-    image: "/images/new-york.jpg",
-  },
-  {
-    name: "Motion Agent",
-    image: "/images/tokyo.jpg",
-  },
-  {
-    name: "Home Renovation",
-    image: "/images/amsterdam.webp",
-  },
-  {
-    name: "Apollo - Art Museum",
-    image: "/images/kyoto.jpg",
-  },
-];
+import { projects } from "./data/projects";
+import { ProjectLoader } from "./components/loader/project-loader";
 
 export default function Home() {
   const { length } = projects;
@@ -39,6 +21,7 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden w-screen h-screen">
+      {/* <ProjectLoader /> */}
       <ProjectBackground projects={projects} currentIndex={currentIndex} />
       <AnimatePresence mode="sync">
         {projects.map((project, index) => {
