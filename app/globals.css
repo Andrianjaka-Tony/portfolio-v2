@@ -4,7 +4,7 @@
 
 :root {
   --foreground: #fff;
-  --background: #111;
+  --background: #000;
 }
 
 body {
@@ -14,6 +14,34 @@ body {
     Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 }
 
-.perspective {
-  perspective: 1200px;
+@keyframes fade-out {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  to {
+    opacity: 0.5;
+    transform: translateY(-30vh);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
+    transform: translateY(30vh);
+  }
+
+  to {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%);
+    transform: translateY(0);
+  }
+}
+
+::view-transition-old(root) {
+  animation: 1s cubic-bezier(0.51, 0.12, 0.1, 1.06) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 1s cubic-bezier(0.51, 0.12, 0.1, 1.06) both fade-in;
 }

@@ -1,4 +1,5 @@
 import { AnimeParagraphs, AnimeRow } from "../components/anime-text/anime-word";
+import { ScrollTop } from "../components/scroll-top";
 
 function Presentation() {
   return (
@@ -132,6 +133,7 @@ function GetInTouch() {
 export default function About() {
   return (
     <div className="flex py-60 font-light">
+      <ScrollTop />
       <div className="w-2/5"></div>
       <div className="w-1/2 flex flex-col gap-48">
         <Presentation />
