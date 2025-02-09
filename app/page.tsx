@@ -39,7 +39,7 @@ export default function Home() {
             position && (
               <ProjectCard
                 key={index}
-                {...project}
+                project={project}
                 position={position}
                 activeIndex={activeIndex}
                 setDisplayName={setDisplayName}

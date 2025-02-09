@@ -7,7 +7,8 @@ import { Project } from "@/app/type";
 import { Variants, motion, MotionValue, Transition } from "motion/react";
 import { useTransitionRouter } from "next-view-transitions";
 
-type Props = Project & {
+type Props = {
+  project: Project;
   position?: "center" | "left" | "right";
   activeIndex: MotionValue<number>;
   setDisplayName: Dispatch<SetStateAction<boolean>>;
@@ -91,13 +92,7 @@ const transition: Transition = {
   ease: [0.73, -0.02, 0.31, 1],
 };
 
-export function ProjectCard({
-  name,
-  image,
-  position = "center",
-  activeIndex,
-  setDisplayName,
-}: Props) {
+export function ProjectCard({ project, position = "center", activeIndex, setDisplayName }: Props) {
   const router = useTransitionRouter();
   const [isClickable, setIsClickable] = useState<boolean>(false);
 
@@ -105,7 +100,7 @@ export function ProjectCard({
     event.preventDefault();
     if (isClickable) {
       if (position === "center") {
-        router.push("/project");
+        router.push(`/${project.id}`);
         return;
       }
       setDisplayName(false);
@@ -143,8 +138,8 @@ export function ProjectCard({
         variants={imageVariants}
         transition={transition}
         className="w-full h-full object-cover object-center"
-        src={image}
-        alt={name}
+        src={project.image}
+        alt={project.name}
       />
     </motion.div>
   );

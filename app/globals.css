@@ -16,20 +16,20 @@ body {
 
 @keyframes fade-out {
   from {
-    opacity: 1;
+    /* opacity: 1; */
     transform: translateY(0);
   }
 
   to {
-    opacity: 0.5;
-    transform: translateY(-30vh);
+    /* opacity: 0.5; */
+    transform: translateY(-60vh);
   }
 }
 
 @keyframes fade-in {
   from {
     clip-path: polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%);
-    transform: translateY(10vh);
+    transform: translateY(30vh);
   }
 
   to {
