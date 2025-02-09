@@ -5,6 +5,7 @@ import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from "react
 import { Project } from "@/app/type";
 
 import { Variants, motion, MotionValue, Transition } from "motion/react";
+import { useTransitionRouter } from "next-view-transitions";
 
 type Props = Project & {
   position?: "center" | "left" | "right";
@@ -97,12 +98,14 @@ export function ProjectCard({
   activeIndex,
   setDisplayName,
 }: Props) {
+  const router = useTransitionRouter();
   const [isClickable, setIsClickable] = useState<boolean>(false);
 
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();
     if (isClickable) {
       if (position === "center") {
+        router.push("/project");
         return;
       }
       setDisplayName(false);

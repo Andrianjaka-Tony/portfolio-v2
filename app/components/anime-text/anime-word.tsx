@@ -16,15 +16,16 @@ type RowProps = {
 type ParagraphProps = {
   paragraphs: string[][];
   className?: string;
+  custom?: number;
 };
 
 const controlVariants: Variants = {
-  animate: {
+  animate: (delayChildren: number) => ({
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.2,
+      delayChildren,
     },
-  },
+  }),
 };
 
 const variants: Variants = {
@@ -80,7 +81,7 @@ export function AnimeRow({ rows, className }: RowProps) {
   );
 }
 
-export function AnimeParagraphs({ paragraphs, className }: ParagraphProps) {
+export function AnimeParagraphs({ paragraphs, className, custom = 0.2 }: ParagraphProps) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true });
 
@@ -90,6 +91,7 @@ export function AnimeParagraphs({ paragraphs, className }: ParagraphProps) {
       initial="initial"
       animate={inView ? "animate" : "initial"}
       className={`flex flex-col ${className}`}
+      custom={custom}
       ref={ref}
     >
       {paragraphs.map((rows, index) => {
