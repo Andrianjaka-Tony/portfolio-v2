@@ -49,7 +49,15 @@ type ProjectBackgroundProps = {
 
 export function ProjectBackground({ projects, currentIndex }: ProjectBackgroundProps) {
   return (
-    <div className="relative h-screen w-screen">
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{
+        delay: 0.75,
+        duration: 0.5,
+      }}
+      className="relative h-screen w-screen"
+    >
       <AnimatePresence initial={false}>
         {projects.map((project, index) => (
           <Background
@@ -61,6 +69,6 @@ export function ProjectBackground({ projects, currentIndex }: ProjectBackgroundP
           />
         ))}
       </AnimatePresence>
-    </div>
+    </motion.div>
   );
 }

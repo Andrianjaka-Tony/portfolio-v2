@@ -1,18 +1,18 @@
 "use client";
 
-import { TargetAndTransition, Variants, motion } from "motion/react";
+import { AnimationDefinition, TargetAndTransition, Variants, motion } from "motion/react";
 
 const parentVariants = () => {
   return {
     animate: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.03,
+        staggerChildren: 0.025,
       },
     },
     exit: {
       transition: {
-        staggerChildren: 0,
+        staggerChildren: 0.025,
       },
     },
   } as Variants;
@@ -26,7 +26,7 @@ const childVariants = (origin: string, exit: TargetAndTransition) => {
     animate: {
       y: "0%",
       transition: {
-        ease: [0.12, 0.74, 0, 1],
+        ease: [0.36, 0.44, 0.2, 1.03],
         duration: 1,
       },
     },
@@ -39,9 +39,16 @@ type Props = {
   text?: string;
   origin?: string;
   exit?: TargetAndTransition;
+  onAnimationComplete?: (definition: AnimationDefinition) => void;
 };
 
-export function AnimeText({ className = "", text = "", origin = "200%", exit = {} }: Props) {
+export function AnimeText({
+  className = "",
+  text = "",
+  origin = "100%",
+  exit = {},
+  onAnimationComplete,
+}: Props) {
   return (
     <motion.div
       variants={parentVariants()}
@@ -49,6 +56,7 @@ export function AnimeText({ className = "", text = "", origin = "200%", exit = {
       animate="animate"
       exit="exit"
       className={`flex ${className}`}
+      onAnimationComplete={onAnimationComplete}
     >
       {Array.from(text).map((character, index) => (
         <div key={index} className="overflow-hidden w-fit">

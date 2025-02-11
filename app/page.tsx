@@ -14,6 +14,7 @@ export default function Home() {
   const activeIndex = useMotionValue<number>(0);
   const [currentIndex, setCurrentIndex] = useState<number>(activeIndex.get());
   const [displayName, setDisplayName] = useState<boolean>(true);
+  const [displayLoader, setDisplayLoader] = useState<boolean>(false);
 
   useMotionValueEvent(activeIndex, "change", (value) => {
     setCurrentIndex(value);
@@ -21,36 +22,40 @@ export default function Home() {
 
   return (
     <div className="relative overflow-hidden w-screen h-screen">
-      {/* <ProjectLoader /> */}
-      <ProjectBackground projects={projects} currentIndex={currentIndex} />
-      <AnimatePresence mode="sync">
-        {projects.map((project, index) => {
-          const active = currentIndex;
-          const position =
-            index === active
-              ? "center"
-              : index === (active - 1 + length) % length
-              ? "left"
-              : index === (active + 1) % length
-              ? "right"
-              : null;
+      <ProjectLoader setComplete={setDisplayLoader} />
+      {displayLoader && (
+        <>
+          <ProjectBackground projects={projects} currentIndex={currentIndex} />
+          <AnimatePresence mode="sync">
+            {projects.map((project, index) => {
+              const active = currentIndex;
+              const position =
+                index === active
+                  ? "center"
+                  : index === (active - 1 + length) % length
+                  ? "left"
+                  : index === (active + 1) % length
+                  ? "right"
+                  : null;
 
-          return (
-            position && (
-              <ProjectCard
-                key={index}
-                project={project}
-                position={position}
-                activeIndex={activeIndex}
-                setDisplayName={setDisplayName}
-              />
-            )
-          );
-        })}
-      </AnimatePresence>
-      <AnimatePresence mode="sync">
-        {displayName && <ProjectText key={1} name={projects[currentIndex].name} />}
-      </AnimatePresence>
+              return (
+                position && (
+                  <ProjectCard
+                    key={index}
+                    project={project}
+                    position={position}
+                    activeIndex={activeIndex}
+                    setDisplayName={setDisplayName}
+                  />
+                )
+              );
+            })}
+          </AnimatePresence>
+          <AnimatePresence mode="sync">
+            {displayName && <ProjectText key={1} name={projects[currentIndex].name} />}
+          </AnimatePresence>
+        </>
+      )}
     </div>
   );
 }

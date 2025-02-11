@@ -1,61 +1,70 @@
 "use client";
 
-import React from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
+import { AnimeText } from "../anime-text/anime-text";
+import { AnimatePresence } from "motion/react";
 
-import { motion, Variants } from "motion/react";
-import { projects } from "@/app/data/projects";
-
-const parentVariants: Variants = {
-  animate: {
-    transition: {
-      staggerChildren: 0.25,
-    },
-  },
+type Props = {
+  setComplete: Dispatch<SetStateAction<boolean>>;
 };
 
-const imageVariants: Variants = {
-  initial: {
-    scale: 0,
-  },
-  animate: {
-    scale: 1,
-    transition: {
-      duration: 1.2,
-      ease: [0.23, 0.94, 0.32, 0.96],
-    },
-  },
-};
+export function ProjectLoader({ setComplete }: Props) {
+  const [displayProgress, setDisplayProgress] = useState<boolean>(true);
+  const [displayName, setDisplayName] = useState<boolean>(true);
+  const [displayJob, setDiplayJob] = useState<boolean>(false);
 
-export function ProjectLoader() {
   return (
-    <div className="relative top-0 left-0 h-screen w-screen perspective">
-      <div className="absolute inset-0 flex justify-center items-center opacity-40">100%</div>
-      <motion.div variants={parentVariants} initial="initial" animate="animate">
-        {projects.map((project) => {
-          return (
-            <motion.div
-              key={project.name}
-              className="absolute h-[250px] w-[250px] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%]"
-              initial={{ height: "250px", width: "250px" }}
-              animate={{
-                height: "400px",
-                width: "300px",
+    <div className="z-20 absolute top-0 left-0 h-screen w-screen bg-transparent perspective pointer-events-none">
+      {displayProgress && (
+        <div className="absolute inset-0 flex justify-center items-center opacity-40">100%</div>
+      )}
+      <div className="absolute inset-0 flex justify-center items-center text-5xl">
+        <AnimatePresence>
+          {displayName && (
+            <AnimeText
+              text="TONY ANDRIANJAKA"
+              onAnimationComplete={() => {
+                setDisplayName(false);
+                setDisplayProgress(false);
+                setTimeout(() => {
+                  setDiplayJob(true);
+                }, 500);
+              }}
+              origin="150%"
+              exit={{
+                y: "-150%",
                 transition: {
-                  duration: 0.3,
-                  delay: 3,
-                  ease: [0.73, -0.02, 0.31, 1],
+                  ease: [0.69, 0, 0.91, 0.34],
+                  duration: 1,
                 },
               }}
-            >
-              <motion.img
-                variants={imageVariants}
-                src={project.image}
-                className="w-full h-full object-cover object-center scale-150"
-              />
-            </motion.div>
-          );
-        })}
-      </motion.div>
+            />
+          )}
+        </AnimatePresence>
+      </div>
+      <div className="absolute inset-0 flex justify-center items-center text-5xl">
+        <AnimatePresence>
+          {displayJob && (
+            <AnimeText
+              text="CREATIVE DEVELOPER"
+              onAnimationComplete={() => {
+                setDiplayJob(false);
+                setTimeout(() => {
+                  setComplete(true);
+                }, 550);
+              }}
+              origin="150%"
+              exit={{
+                y: "-150%",
+                transition: {
+                  ease: [0.69, 0, 0.91, 0.34],
+                  duration: 1,
+                },
+              }}
+            />
+          )}
+        </AnimatePresence>
+      </div>
     </div>
   );
 }
