@@ -17,7 +17,6 @@ type Props = {
 const variants: Variants = {
   initial: {
     opacity: 0,
-    // clipPath: "polygon(0% 0%, 100% 0%, 100% 0%, 0% 0%)",
   },
   animate: {
     opacity: 1,
@@ -29,7 +28,6 @@ const variants: Variants = {
   exit: {
     opacity: 0,
     scale: 0,
-    // rotate: "3deg",
     transition: {
       duration: 0.8,
       ease: "easeOut",
@@ -37,38 +35,107 @@ const variants: Variants = {
     },
   },
   // initials
-  center: {
-    height: "400px",
-    width: "300px",
-    top: "50%",
-    left: "50%",
-    right: "50%",
-    x: "-50%",
-    y: "-50%",
-    clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
-    rotate: 0,
+  center: (width: number) => {
+    let size = {
+      height: "400px",
+      width: "300px",
+    };
+
+    if (width <= 640) {
+      size = {
+        height: "300px",
+        width: "225px",
+      };
+    }
+
+    return {
+      top: "50%",
+      left: "50%",
+      right: "50%",
+      x: "-50%",
+      y: "-50%",
+      clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+      rotate: 0,
+      ...size,
+    };
   },
-  left: {
-    height: "400px",
-    width: "300px",
-    top: "50%",
-    left: "5%",
-    right: "0%",
-    x: "-30%",
-    y: "-50%",
-    clipPath: "polygon(30% 30%, 70% 30%, 70% 70%, 30% 70%)",
-    rotate: "-90deg",
+  left: (width: number) => {
+    let options = {
+      height: "400px",
+      width: "300px",
+      x: "",
+      left: "",
+    };
+
+    if (width > 1024) {
+      options = {
+        height: "400px",
+        width: "300px",
+        left: "5%",
+        x: "-30%",
+      };
+    } else if (width <= 1024 && width > 640) {
+      options = {
+        height: "400px",
+        width: "300px",
+        left: "0%",
+        x: "-50%",
+      };
+    } else if (width <= 640) {
+      options = {
+        height: "360px",
+        width: "270px",
+        left: "0%",
+        x: "-65%",
+      };
+    }
+
+    return {
+      top: "50%",
+      y: "-50%",
+      clipPath: "polygon(30% 30%, 70% 30%, 70% 70%, 30% 70%)",
+      rotate: "-90deg",
+      ...options,
+    };
   },
-  right: {
-    height: "400px",
-    width: "300px",
-    top: "50%",
-    left: "95%",
-    right: "50%",
-    x: "-70%",
-    y: "-50%",
-    clipPath: "polygon(30% 30%, 70% 30%, 70% 70%, 30% 70%)",
-    rotate: "90deg",
+  right: (width: number) => {
+    let options = {
+      height: "400px",
+      width: "300px",
+      x: "",
+      left: "",
+    };
+
+    if (width > 1024) {
+      options = {
+        height: "400px",
+        width: "300px",
+        left: "95%",
+        x: "-70%",
+      };
+    } else if (width <= 1024 && width > 640) {
+      options = {
+        height: "400px",
+        width: "300px",
+        left: "100%",
+        x: "-50%",
+      };
+    } else if (width <= 640) {
+      options = {
+        height: "360px",
+        width: "270px",
+        left: "100%",
+        x: "-35%",
+      };
+    }
+
+    return {
+      top: "50%",
+      y: "-50%",
+      clipPath: "polygon(30% 30%, 70% 30%, 70% 70%, 30% 70%)",
+      rotate: "90deg",
+      ...options,
+    };
   },
 };
 
@@ -95,6 +162,15 @@ const transition: Transition = {
 export function ProjectCard({ project, position = "center", activeIndex, setDisplayName }: Props) {
   const router = useTransitionRouter();
   const [isClickable, setIsClickable] = useState<boolean>(false);
+
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      const { innerWidth: width } = window;
+      setWindowWidth(width);
+    });
+  }, []);
 
   const handleClick = (event: MouseEvent) => {
     event.preventDefault();
@@ -133,6 +209,7 @@ export function ProjectCard({ project, position = "center", activeIndex, setDisp
       className={`absolute cursor-pointer`}
       onClick={handleClick}
       transition={transition}
+      custom={windowWidth}
     >
       <motion.img
         variants={imageVariants}
