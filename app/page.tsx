@@ -7,6 +7,7 @@ import { useState } from "react";
 import { ProjectText } from "./components/project/project-text";
 import { projects } from "./data/projects";
 import { ProjectLoader } from "./components/loader/project-loader";
+import ProjectCursor from "./components/project/project-cursor";
 
 export default function Home() {
   const { length } = projects;
@@ -16,12 +17,21 @@ export default function Home() {
   const [displayName, setDisplayName] = useState<boolean>(true);
   const [displayLoader, setDisplayLoader] = useState<boolean>(false);
 
+  // Cursor effect
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [cursor, setCursor] = useState<string>("");
+
   useMotionValueEvent(activeIndex, "change", (value) => {
     setCurrentIndex(value);
   });
 
   return (
-    <div className="relative overflow-hidden w-screen h-screen">
+    <div
+      onMouseMove={(event) => {
+        setMousePosition({ x: event.clientX, y: event.clientY });
+      }}
+      className="relative overflow-hidden w-screen h-screen"
+    >
       <ProjectLoader setComplete={setDisplayLoader} />
       {displayLoader && (
         <>
@@ -46,6 +56,7 @@ export default function Home() {
                     position={position}
                     activeIndex={activeIndex}
                     setDisplayName={setDisplayName}
+                    setCursor={setCursor}
                   />
                 )
               );
@@ -53,6 +64,9 @@ export default function Home() {
           </AnimatePresence>
           <AnimatePresence mode="sync">
             {displayName && <ProjectText key={1} name={projects[currentIndex].name} />}
+          </AnimatePresence>
+          <AnimatePresence mode="wait">
+            {cursor !== "" && <ProjectCursor position={mousePosition} variant={cursor} />}
           </AnimatePresence>
         </>
       )}

@@ -4,7 +4,15 @@ import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from "react
 
 import { Project } from "@/app/type";
 
-import { Variants, motion, MotionValue, Transition } from "motion/react";
+import {
+  Variants,
+  motion,
+  MotionValue,
+  Transition,
+  useMotionValue,
+  useMotionValueEvent,
+  AnimatePresence,
+} from "motion/react";
 import { useTransitionRouter } from "next-view-transitions";
 
 type Props = {
@@ -12,6 +20,7 @@ type Props = {
   position?: "center" | "left" | "right";
   activeIndex: MotionValue<number>;
   setDisplayName: Dispatch<SetStateAction<boolean>>;
+  setCursor: Dispatch<SetStateAction<string>>;
 };
 
 const variants: Variants = {
@@ -159,7 +168,13 @@ const transition: Transition = {
   ease: [0.73, -0.02, 0.31, 1],
 };
 
-export function ProjectCard({ project, position = "center", activeIndex, setDisplayName }: Props) {
+export function ProjectCard({
+  project,
+  position = "center",
+  activeIndex,
+  setDisplayName,
+  setCursor,
+}: Props) {
   const router = useTransitionRouter();
   const [isClickable, setIsClickable] = useState<boolean>(false);
 
@@ -201,23 +216,27 @@ export function ProjectCard({ project, position = "center", activeIndex, setDisp
   }, []);
 
   return (
-    <motion.div
-      variants={variants}
-      initial={["initial", position]}
-      animate={["animate", position]}
-      exit="exit"
-      className={`absolute cursor-pointer`}
-      onClick={handleClick}
-      transition={transition}
-      custom={windowWidth}
-    >
-      <motion.img
-        variants={imageVariants}
+    <>
+      <motion.div
+        variants={variants}
+        initial={["initial", position]}
+        animate={["animate", position]}
+        exit="exit"
+        className={`absolute cursor-pointer`}
+        onClick={handleClick}
         transition={transition}
-        className="w-full h-full object-cover object-center"
-        src={project.image}
-        alt={project.name}
-      />
-    </motion.div>
+        custom={windowWidth}
+        onMouseOver={() => setCursor(position)}
+        onMouseLeave={() => setCursor("")}
+      >
+        <motion.img
+          variants={imageVariants}
+          transition={transition}
+          className="w-full h-full object-cover object-center"
+          src={project.image}
+          alt={project.name}
+        />
+      </motion.div>
+    </>
   );
 }
