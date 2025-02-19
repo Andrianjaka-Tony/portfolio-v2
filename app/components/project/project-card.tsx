@@ -226,7 +226,7 @@ export function ProjectCard({
         onClick={handleClick}
         transition={transition}
         custom={windowWidth}
-        onMouseOver={() => setCursor(position)}
+        onMouseOver={() => setCursor(isClickable ? position : "")}
         onMouseLeave={() => setCursor("")}
       >
         <motion.img
