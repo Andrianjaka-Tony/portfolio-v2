@@ -215,6 +215,12 @@ export function ProjectCard({
     }, 1400);
   }, []);
 
+  useEffect(() => {
+    if (position === "center") {
+      router.prefetch(`/${project.id}`);
+    }
+  }, [position]);
+
   return (
     <>
       <motion.div
