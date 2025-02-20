@@ -4,17 +4,19 @@ import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 
 type Props = {
-  variant: string;
+  variant: "" | "left" | "center" | "right";
   position: { x: number; y: number };
 };
 
 const text = {
+  "": "",
   left: "Previous",
   center: "View Project",
   right: "Next",
 };
 
 const iconRotation = {
+  "": "",
   left: "rotate-180",
   center: "-rotate-45",
   right: "rotate-0",
