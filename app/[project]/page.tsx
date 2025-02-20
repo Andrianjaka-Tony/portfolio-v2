@@ -1,4 +1,4 @@
-// "use client";
+"use client";
 
 import { Link } from "next-view-transitions";
 import { AnimeParagraphs } from "../components/anime-text/anime-word";
@@ -7,17 +7,11 @@ import ParallaxProjectCard from "../components/parallax-project-card";
 import { ScrollTop } from "../components/scroll-top";
 import { Project as ProjectType } from "../type";
 import { useProjects } from "../context/project.context";
+import { useParams } from "next/navigation";
 
-type Params = Promise<{
-  project: string;
-}>;
-
-type Props = {
-  params: Params;
-};
-
-export default async function Project({ params }: Props) {
-  const { project } = await params;
+export default function Project() {
+  const params = useParams();
+  const project = params.project as string;
 
   const projects = useProjects();
   const foundProject = projects.find((p) => p.id === project) as ProjectType;
