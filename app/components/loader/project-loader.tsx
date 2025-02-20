@@ -4,13 +4,17 @@ import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AnimeText } from "../anime-text/anime-text";
 import { AnimatePresence } from "motion/react";
 import { useProjects } from "@/app/context/project.context";
+import { useTransitionRouter } from "next-view-transitions";
 
 type Props = {
   setComplete: Dispatch<SetStateAction<boolean>>;
 };
 
 export function ProjectLoader({ setComplete }: Props) {
+  const router = useTransitionRouter();
   const projects = useProjects();
+
+  const pages = projects.map(({ id }) => id);
 
   const [loadingProgress, setLoadingProgress] = useState(0);
   const imagesToLoad = projects.map(({ image }) => image);
@@ -34,6 +38,12 @@ export function ProjectLoader({ setComplete }: Props) {
       setDisplayName(true);
     }
   }, [loadingProgress]);
+
+  useEffect(() => {
+    pages.forEach((page) => {
+      router.prefetch(`/${page}`);
+    });
+  }, []);
 
   return (
     <div className="z-20 absolute top-0 left-0 h-screen w-screen bg-transparent perspective pointer-events-none">
