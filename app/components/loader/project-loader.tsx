@@ -1,22 +1,44 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useState } from "react";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AnimeText } from "../anime-text/anime-text";
 import { AnimatePresence } from "motion/react";
+import { projects } from "@/app/data/projects";
 
 type Props = {
   setComplete: Dispatch<SetStateAction<boolean>>;
 };
 
 export function ProjectLoader({ setComplete }: Props) {
-  const [displayProgress, setDisplayProgress] = useState<boolean>(true);
-  const [displayName, setDisplayName] = useState<boolean>(true);
-  const [displayJob, setDiplayJob] = useState<boolean>(false);
+  const [loadingProgress, setLoadingProgress] = useState(0);
+  const imagesToLoad = projects.map(({ image }) => image);
+
+  const [displayProgress, setDisplayProgress] = useState(true);
+  const [displayName, setDisplayName] = useState<boolean>(false);
+  const [displayJob, setDisplayJob] = useState<boolean>(false);
+
+  useEffect(() => {
+    imagesToLoad.forEach((source) => {
+      const image = new Image();
+      image.src = source;
+      image.addEventListener("load", () => {
+        setLoadingProgress((previous) => previous + 1);
+      });
+    });
+  }, []);
+
+  useEffect(() => {
+    if (loadingProgress >= imagesToLoad.length) {
+      setDisplayName(true);
+    }
+  }, [loadingProgress]);
 
   return (
     <div className="z-20 absolute top-0 left-0 h-screen w-screen bg-transparent perspective pointer-events-none">
       {displayProgress && (
-        <div className="absolute inset-0 flex justify-center items-center opacity-40">100%</div>
+        <div className="absolute inset-0 flex justify-center items-center opacity-40">
+          {Math.round((loadingProgress * 100) / imagesToLoad.length)}%
+        </div>
       )}
       <div className="absolute inset-0 flex justify-center items-center text-5xl">
         <AnimatePresence>
@@ -25,9 +47,8 @@ export function ProjectLoader({ setComplete }: Props) {
               text="TONY ANDRIANJAKA"
               onAnimationComplete={() => {
                 setDisplayName(false);
-                setDisplayProgress(false);
                 setTimeout(() => {
-                  setDiplayJob(true);
+                  setDisplayJob(true);
                 }, 500);
               }}
               origin="150%"
@@ -48,7 +69,8 @@ export function ProjectLoader({ setComplete }: Props) {
             <AnimeText
               text="CREATIVE DEVELOPER"
               onAnimationComplete={() => {
-                setDiplayJob(false);
+                setDisplayJob(false);
+                setDisplayProgress(false);
                 setTimeout(() => {
                   setComplete(true);
                 }, 550);
