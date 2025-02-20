@@ -5,12 +5,13 @@ import { ProjectBackground } from "./components/project/project-background";
 import { ProjectCard } from "./components/project/project-card";
 import { useState } from "react";
 import { ProjectText } from "./components/project/project-text";
-import { projects } from "./data/projects";
 import { ProjectLoader } from "./components/loader/project-loader";
 import ProjectCursor from "./components/project/project-cursor";
 import { Link } from "next-view-transitions";
+import { useProjects } from "./context/project.context";
 
 export default function Home() {
+  const projects = useProjects();
   const { length } = projects;
 
   const activeIndex = useMotionValue<number>(0);

@@ -1,6 +1,6 @@
 "use client";
 
-import { projects } from "@/app/data/projects";
+import { useProjects } from "@/app/context/project.context";
 import {
   motion,
   useMotionTemplate,
@@ -17,6 +17,8 @@ type Props = {
 
 export default function NextProject({ index }: Props) {
   const router = useTransitionRouter();
+
+  const projects = useProjects();
   const nextProject = projects[index];
 
   const ref = useRef(null);

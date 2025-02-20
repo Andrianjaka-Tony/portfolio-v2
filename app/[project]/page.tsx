@@ -5,8 +5,8 @@ import { AnimeParagraphs } from "../components/anime-text/anime-word";
 import NextProject from "../components/next-project";
 import ParallaxProjectCard from "../components/parallax-project-card";
 import { ScrollTop } from "../components/scroll-top";
-import { projects } from "../data/projects";
 import { Project as ProjectType } from "../type";
+import { useProjects } from "../context/project.context";
 
 type Params = Promise<{
   project: string;
@@ -18,6 +18,8 @@ type Props = {
 
 export default async function Project({ params }: Props) {
   const { project } = await params;
+
+  const projects = useProjects();
   const foundProject = projects.find((p) => p.id === project) as ProjectType;
   const nextProjectIndex = (projects.indexOf(foundProject) + 1) % projects.length;
 

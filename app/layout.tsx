@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import ReactLenis from "lenis/react";
 import { ViewTransitions } from "next-view-transitions";
+import { ProjectProvider } from "./context/project.context";
 
 export const metadata: Metadata = {
   title: "Andrianjaka Tony",
@@ -17,7 +18,9 @@ export default function RootLayout({
     <ViewTransitions>
       <html lang="en">
         <body className="bg-background text-foreground">
-          <ReactLenis root>{children}</ReactLenis>
+          <ReactLenis root>
+            <ProjectProvider>{children}</ProjectProvider>
+          </ReactLenis>
         </body>
       </html>
     </ViewTransitions>

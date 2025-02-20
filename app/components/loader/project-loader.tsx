@@ -3,13 +3,15 @@
 import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { AnimeText } from "../anime-text/anime-text";
 import { AnimatePresence } from "motion/react";
-import { projects } from "@/app/data/projects";
+import { useProjects } from "@/app/context/project.context";
 
 type Props = {
   setComplete: Dispatch<SetStateAction<boolean>>;
 };
 
 export function ProjectLoader({ setComplete }: Props) {
+  const projects = useProjects();
+
   const [loadingProgress, setLoadingProgress] = useState(0);
   const imagesToLoad = projects.map(({ image }) => image);
 
