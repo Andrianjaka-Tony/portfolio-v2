@@ -20,7 +20,7 @@ export default function Home() {
 
   // Cursor effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-  const [cursor, setCursor] = useState<string>("");
+  const [cursor, setCursor] = useState<"" | "left" | "center" | "right">("");
 
   useMotionValueEvent(activeIndex, "change", (value) => {
     setCurrentIndex(value);

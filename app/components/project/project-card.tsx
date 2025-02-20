@@ -20,7 +20,7 @@ type Props = {
   position?: "center" | "left" | "right";
   activeIndex: MotionValue<number>;
   setDisplayName: Dispatch<SetStateAction<boolean>>;
-  setCursor: Dispatch<SetStateAction<string>>;
+  setCursor: Dispatch<SetStateAction<"" | "left" | "center" | "right">>;
 };
 
 const variants: Variants = {
