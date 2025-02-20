@@ -19,6 +19,6 @@ export const projects: Project[] = [
   {
     id: "apollo",
     name: "Apollo Art Museum",
-    image: "/images/apollo.webp",
+    image: "/images/Apollo.webp",
   },
 ];
