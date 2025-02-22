@@ -4,15 +4,7 @@ import { Dispatch, MouseEvent, SetStateAction, useEffect, useState } from "react
 
 import { Project } from "@/app/type";
 
-import {
-  Variants,
-  motion,
-  MotionValue,
-  Transition,
-  useMotionValue,
-  useMotionValueEvent,
-  AnimatePresence,
-} from "motion/react";
+import { Variants, motion, MotionValue, Transition } from "motion/react";
 import { useTransitionRouter } from "next-view-transitions";
 
 type Props = {
@@ -228,7 +220,7 @@ export function ProjectCard({
         initial={["initial", position]}
         animate={["animate", position]}
         exit="exit"
-        className={`absolute cursor-pointer`}
+        className={`absolute cursor-pointer will-change-[transform,opacity,clip-path]`}
         onClick={handleClick}
         transition={transition}
         custom={windowWidth}

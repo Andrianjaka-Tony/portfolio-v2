@@ -39,11 +39,11 @@ body {
 }
 
 ::view-transition-old(root) {
-  animation: 1s cubic-bezier(0.48, 0.02, 0.16, 1.01) both fade-out;
-  /* animation: 1s cubic-bezier(0.51, 0.12, 0.1, 1.06) both fade-out; */
+  will-change: transform, opacity;
+  animation: 1.2s cubic-bezier(0.48, 0.02, 0.16, 1.01) both fade-out;
 }
 
 ::view-transition-new(root) {
-  animation: 1s cubic-bezier(0.48, 0.02, 0.16, 1.01) both fade-in;
-  /* animation: 1s cubic-bezier(0.51, 0.12, 0.1, 1.06) both fade-in; */
+  will-change: clip-path, transform;
+  animation: 1.2s cubic-bezier(0.48, 0.02, 0.16, 1.01) both fade-in;
 }
