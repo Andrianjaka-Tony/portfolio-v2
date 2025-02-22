@@ -8,19 +8,19 @@ function Presentation() {
       <AnimeParagraphs
         paragraphs={[
           [
-            "Hello, my name is Tony, I'm a Creative Developer",
-            "based at Madagascar at the start of my journey.",
+            <p className="flex pl-4 items-center gap-2">
+              <img src="/tony.jpg" className="w-8 h-8 rounded-full object-cover" />
+              I'm a Creative Developer at the start of my journey.
+            </p>,
+            "I specialize in development, focusing on crafting intuitive",
+            "visually appealing, and efficient user interfaces for",
+            "seamless user experiences.",
           ],
           [
-            "I specialize in development, focusing on crafting",
-            "intuitive, visually appealing, and efficient user",
-            "interfaces for seamless user experiences.",
-          ],
-          [
-            "I love exploring new ideas, solving problems,",
-            "and finding innovative ways to bring projects to",
-            "life. My curiosity keeps me motivated to learn",
-            "and grow every day.",
+            "I love exploring new ideas, solving problems, and finding",
+            "creative ways to bring projects to life with innovation,",
+            "fueling my passion for continuous growth. I continuously",
+            "embrace every challenge.",
           ],
         ]}
         className="text-3xl leading-snug gap-12"
@@ -148,14 +148,14 @@ export default function About() {
       </div>
       <div className="flex py-60 font-light">
         <ScrollTop />
-        <div className="w-2/5"></div>
-        <div className="w-1/2 flex flex-col gap-48">
+        <div className="w-1/2 mx-auto flex flex-col gap-48">
           <Presentation />
           <WorkingExperience />
           <Education />
           <Technologies />
           <GetInTouch />
         </div>
+        {/* <div className="w-2/5"></div> */}
       </div>
     </>
   );

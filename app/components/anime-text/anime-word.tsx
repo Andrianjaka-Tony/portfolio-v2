@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useInView, Variants } from "motion/react";
-import { useRef } from "react";
+import { ReactNode, useRef } from "react";
 
 type WordProps = {
   text: string;
@@ -14,7 +14,7 @@ type RowProps = {
 };
 
 type ParagraphProps = {
-  paragraphs: string[][];
+  paragraphs: (string | ReactNode)[][];
   className?: string;
   custom?: number;
 };
