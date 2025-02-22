@@ -17,7 +17,7 @@ export function ProjectLoader({ setComplete }: Props) {
   const pages = projects.map(({ id }) => id);
 
   const [loadingProgress, setLoadingProgress] = useState(0);
-  const imagesToLoad = projects.map(({ image }) => image);
+  const imagesToLoad = [...projects.map(({ image }) => image), "/tony.jpg"];
 
   const [displayProgress, setDisplayProgress] = useState(true);
   const [displayName, setDisplayName] = useState<boolean>(false);
