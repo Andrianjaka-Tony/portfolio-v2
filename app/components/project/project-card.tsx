@@ -6,11 +6,11 @@ import { Project } from "@/app/type";
 
 import { Variants, motion, MotionValue, Transition } from "motion/react";
 import { useTransitionRouter } from "next-view-transitions";
+import { useCurrentProjectStore } from "@/app/store/current-project.store";
 
 type Props = {
   project: Project;
   position?: "center" | "left" | "right";
-  activeIndex: MotionValue<number>;
   setDisplayName: Dispatch<SetStateAction<boolean>>;
   setCursor: Dispatch<SetStateAction<"" | "left" | "center" | "right">>;
 };
@@ -160,14 +160,10 @@ const transition: Transition = {
   ease: [0.73, -0.02, 0.31, 1],
 };
 
-export function ProjectCard({
-  project,
-  position = "center",
-  activeIndex,
-  setDisplayName,
-  setCursor,
-}: Props) {
+export function ProjectCard({ project, position = "center", setDisplayName, setCursor }: Props) {
   const router = useTransitionRouter();
+  const { index, setIndex } = useCurrentProjectStore();
+
   const [isClickable, setIsClickable] = useState<boolean>(false);
 
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -188,12 +184,12 @@ export function ProjectCard({
       }
       setDisplayName(false);
       if (position === "left") {
-        const value = activeIndex.get() - 1;
-        activeIndex.set(value < 0 ? 3 : value);
+        const value = index - 1;
+        setIndex(value < 0 ? 3 : value);
       }
       if (position === "right") {
-        const value = activeIndex.get() + 1;
-        activeIndex.set(value > 3 ? 0 : value);
+        const value = index + 1;
+        setIndex(value > 3 ? 0 : value);
       }
       setTimeout(() => {
         setDisplayName(true);

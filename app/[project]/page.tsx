@@ -9,19 +9,23 @@ import { Project as ProjectType } from "../type";
 import { useProjects } from "../context/project.context";
 import { useParams } from "next/navigation";
 import { useEffect } from "react";
+import { useCurrentProjectStore } from "../store/current-project.store";
 
 export default function Project() {
   const router = useTransitionRouter();
+  const { setIndex } = useCurrentProjectStore();
 
   const params = useParams();
   const project = params.project as string;
 
   const projects = useProjects();
   const foundProject = projects.find((p) => p.id === project) as ProjectType;
+  const projectIndex = projects.indexOf(foundProject);
   const nextProjectIndex = (projects.indexOf(foundProject) + 1) % projects.length;
 
   useEffect(() => {
     router.prefetch(`/${projects[nextProjectIndex].id}`);
+    setIndex(projectIndex);
   }, []);
 
   return (
