@@ -9,15 +9,17 @@ import { ProjectLoader } from "./components/loader/project-loader";
 import ProjectCursor from "./components/project/project-cursor";
 import { Link } from "next-view-transitions";
 import { useProjects } from "./context/project.context";
+import { useLoadingStore } from "./store/loading.store";
 
 export default function Home() {
   const projects = useProjects();
   const { length } = projects;
 
+  const { isLoading } = useLoadingStore();
+
   const activeIndex = useMotionValue<number>(0);
   const [currentIndex, setCurrentIndex] = useState<number>(activeIndex.get());
   const [displayName, setDisplayName] = useState<boolean>(true);
-  const [displayLoader, setDisplayLoader] = useState<boolean>(false);
 
   // Cursor effect
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -47,8 +49,8 @@ export default function Home() {
         }}
         className="relative overflow-hidden w-screen h-screen"
       >
-        <ProjectLoader setComplete={setDisplayLoader} />
-        {displayLoader && (
+        {isLoading && <ProjectLoader />}
+        {!isLoading && (
           <>
             <ProjectBackground projects={projects} currentIndex={currentIndex} />
             <AnimatePresence mode="sync">

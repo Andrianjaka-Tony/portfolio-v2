@@ -1,18 +1,17 @@
 "use client";
 
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { AnimeText } from "../anime-text/anime-text";
 import { AnimatePresence } from "motion/react";
 import { useProjects } from "@/app/context/project.context";
 import { useTransitionRouter } from "next-view-transitions";
+import { useLoadingStore } from "@/app/store/loading.store";
 
-type Props = {
-  setComplete: Dispatch<SetStateAction<boolean>>;
-};
-
-export function ProjectLoader({ setComplete }: Props) {
+export function ProjectLoader() {
   const router = useTransitionRouter();
   const projects = useProjects();
+
+  const { setLoading } = useLoadingStore();
 
   const pages = projects.map(({ id }) => id);
 
@@ -84,8 +83,8 @@ export function ProjectLoader({ setComplete }: Props) {
                 setDisplayJob(false);
                 setDisplayProgress(false);
                 setTimeout(() => {
-                  setComplete(true);
-                }, 550);
+                  setLoading(false);
+                }, 1350);
               }}
               origin="150%"
               exit={{
