@@ -1,6 +1,10 @@
+"use client";
+
 import { Link } from "next-view-transitions";
 import { AnimeParagraphs, AnimeRow } from "../components/anime-text/anime-word";
 import { ScrollTop } from "../components/scroll-top";
+import { useLoadingStore } from "../store/loading.store";
+import { ProjectLoader } from "../components/loader/project-loader";
 
 function Presentation() {
   return (
@@ -132,6 +136,8 @@ function GetInTouch() {
 }
 
 export default function About() {
+  const { isLoading } = useLoadingStore();
+
   return (
     <>
       <div className="z-10 py-8 fixed top-0 left-0 w-screen flex justify-center gap-12">
@@ -146,17 +152,19 @@ export default function About() {
           About
         </Link>
       </div>
-      <div className="flex py-60 font-light">
-        <ScrollTop />
-        <div className="w-1/2 mx-auto flex flex-col gap-48">
-          <Presentation />
-          <WorkingExperience />
-          <Education />
-          <Technologies />
-          <GetInTouch />
+      {isLoading && <ProjectLoader />}
+      {!isLoading && (
+        <div className="flex py-60 font-light">
+          <ScrollTop />
+          <div className="w-1/2 mx-auto flex flex-col gap-48">
+            <Presentation />
+            <WorkingExperience />
+            <Education />
+            <Technologies />
+            <GetInTouch />
+          </div>
         </div>
-        {/* <div className="w-2/5"></div> */}
-      </div>
+      )}
     </>
   );
 }
