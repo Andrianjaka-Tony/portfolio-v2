@@ -44,8 +44,8 @@ const variants: Variants = {
 
     if (width <= 640) {
       size = {
-        height: "300px",
-        width: "225px",
+        height: "240px",
+        width: "180px",
       };
     }
 
@@ -84,8 +84,8 @@ const variants: Variants = {
       };
     } else if (width <= 640) {
       options = {
-        height: "360px",
-        width: "270px",
+        height: "320px",
+        width: "240px",
         left: "0%",
         x: "-65%",
       };
@@ -123,8 +123,8 @@ const variants: Variants = {
       };
     } else if (width <= 640) {
       options = {
-        height: "360px",
-        width: "270px",
+        height: "320px",
+        width: "240px",
         left: "100%",
         x: "-35%",
       };

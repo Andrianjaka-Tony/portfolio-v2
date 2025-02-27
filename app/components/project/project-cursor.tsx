@@ -37,7 +37,7 @@ export default function ProjectCursor({ variant, position }: Props) {
       transition={{ type: "tween" }}
       className={`fixed top-0 left-0 px-4 py-3 flex ${
         variant == "left" && "flex-row-reverse"
-      } items-center justify-center gap-3 bg-[#000000d1] text-foreground pointer-events-none text-xs uppercase`}
+      } items-center justify-center gap-3 bg-[#000000d1] text-foreground pointer-events-none text-xs uppercase hidden xl:block`}
     >
       {value}
       <ArrowRight className={`w-4 h-4 ${iconRotation[variant]}`} />
