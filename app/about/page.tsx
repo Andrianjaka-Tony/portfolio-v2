@@ -140,16 +140,22 @@ export default function About() {
 
   return (
     <>
-      <div className="z-10 py-8 fixed top-0 left-0 w-screen flex justify-center gap-12">
+      <div className="z-10 py-4 px-6 lg:py-8 fixed top-0 left-0 w-screen flex justify-between lg:justify-center gap-12 text-sm lg:text-lg">
         <Link
           href="/"
           scroll={false}
-          className="opacity-40 hover:opacity-100 duration-200 cursor-pointer"
+          className="opacity-40 hover:opacity-100 duration-200 cursor-pointer hidden lg:block"
         >
           Work
         </Link>
-        <Link href="/about" scroll={false} className="cursor-pointer">
+        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
+          Tony Andrianjaka
+        </Link>
+        <Link href="/about" scroll={false} className="cursor-pointer hidden lg:block">
           About
+        </Link>
+        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
+          Back
         </Link>
       </div>
       {isLoading && <ProjectLoader />}
