@@ -42,7 +42,7 @@ export default function Project() {
 
       <div>
         <ScrollTop />
-        <div className="relative top-0 left-0 flex gap-16">
+        <div className="relative top-0 left-0 flex">
           <div className="flex-1 pt-32 pb-16 px-16 sticky top-0 h-screen flex flex-col">
             <div className="">
               <p className="text-2xl leading-none">{foundProject?.name}</p>
@@ -61,7 +61,7 @@ export default function Project() {
                   "be able to do it.",
                 ],
               ]}
-              className="leading-normal opacity-70 gap-4 mt-auto"
+              className="leading-normal opacity-70 gap-4 mt-auto whitespace-nowrap"
               custom={0.3}
             />
           </div>
