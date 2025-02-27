@@ -55,7 +55,7 @@ export function ProjectLoader() {
         <AnimatePresence>
           {displayName && (
             <AnimeText
-              text="TONY ANDRIANJAKA"
+              text="Tony Andrianjaka"
               onAnimationComplete={() => {
                 setDisplayName(false);
                 setTimeout(() => {
@@ -74,11 +74,11 @@ export function ProjectLoader() {
           )}
         </AnimatePresence>
       </div>
-      <div className="absolute inset-0 flex justify-center items-center text-5xl">
+      <div className="absolute inset-0 flex justify-center items-center text-5xl leading-normal">
         <AnimatePresence>
           {displayJob && (
             <AnimeText
-              text="CREATIVE DEVELOPER"
+              text="Creative Developer"
               onAnimationComplete={() => {
                 setDisplayJob(false);
                 setDisplayProgress(false);
