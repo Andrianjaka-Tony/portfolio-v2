@@ -26,14 +26,17 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-10 py-8 fixed top-0 left-0 w-screen flex justify-center gap-12">
-        <Link href="/" scroll={false} className="cursor-pointer">
+      <div className="z-10 py-4 px-6 lg:py-8 fixed top-0 left-0 w-screen flex justify-between lg:justify-center gap-12 text-sm lg:text-lg">
+        <Link href="/" scroll={false} className="cursor-pointer hidden lg:block">
           Work
+        </Link>
+        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
+          Tony Andrianjaka
         </Link>
         <Link
           href="/about"
           scroll={false}
-          className="opacity-40 hover:opacity-100 duration-200 cursor-pointer"
+          className="lg:opacity-40 lg:hover:opacity-100 duration-200 cursor-pointer"
         >
           About
         </Link>
