@@ -35,9 +35,9 @@ export default function ProjectCursor({ variant, position }: Props) {
       animate={{ scale: 1, y: `calc(${position.y}px - 50%)`, x: `calc(${position.x}px - 50%)` }}
       exit={{ scale: 0, y: `calc(${position.y}px - 50%)`, x: `calc(${position.x}px - 50%)` }}
       transition={{ type: "tween" }}
-      className={`fixed top-0 left-0 px-4 py-3 flex ${
+      className={`fixed top-0 left-0 px-4 py-3 ${
         variant == "left" && "flex-row-reverse"
-      } items-center justify-center gap-3 bg-[#000000d1] text-foreground pointer-events-none text-xs uppercase hidden xl:block`}
+      } items-center justify-center gap-3 bg-[#000000d1] text-foreground pointer-events-none text-xs uppercase hidden xl:flex`}
     >
       {value}
       <ArrowRight className={`w-4 h-4 ${iconRotation[variant]}`} />
