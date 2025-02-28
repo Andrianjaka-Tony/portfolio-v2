@@ -8,7 +8,7 @@ import {
   useScroll,
   useTransform,
 } from "motion/react";
-import { useTransitionRouter } from "next-view-transitions";
+import { Link, useTransitionRouter } from "next-view-transitions";
 import { useRef, useState } from "react";
 
 type Props = {
@@ -30,7 +30,7 @@ export default function NextProject({ index }: Props) {
 
   useMotionValueEvent(scrollYProgress, "change", (value) => {
     setProgress(Math.floor(value * 100));
-    if (value === 1) {
+    if (value === 1 && window.innerWidth >= 1280) {
       router.push(`/${nextProject.id}`);
     }
   });
@@ -44,22 +44,43 @@ export default function NextProject({ index }: Props) {
   const scaleTransform = useTransform(scrollYProgress, [0, 1], [0.7, 1]);
 
   return (
-    <motion.div ref={ref} className="w-screen h-[200vh] mt-32">
-      <motion.div className="sticky top-0 h-screen w-screen">
-        <motion.img
-          style={{ scale: scaleTransform, clipPath }}
-          src={nextProject.image}
-          alt={nextProject.name}
-          className="w-full h-full object-cover brightness-[.5]"
-        />
-        <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
-          <div className="flex items-start gap-2">
-            <p className="text-5xl">{nextProject.name}</p>
-            <p className="text-xs mt-1">{progress}</p>
+    <>
+      {window.innerWidth >= 1280 && (
+        <motion.div ref={ref} className="w-screen h-[200vh] mt-32">
+          <motion.div className="relative xl:sticky top-0 h-screen w-screen">
+            <motion.img
+              style={{ scale: scaleTransform, clipPath }}
+              src={nextProject.image}
+              alt={nextProject.name}
+              className="w-full h-full opacity-0 xl:opacity-100 object-cover brightness-[.5]"
+            />
+            <div className="absolute inset-0 flex flex-col items-center justify-center gap-2">
+              <div className="flex px-6 items-start gap-2">
+                <p className="text-3xl xl:text-5xl text-center">{nextProject.name}</p>
+                <p className="hidden xl:block text-xs mt-1">{progress}</p>
+              </div>
+              <p className="text-sm">Next Project</p>
+            </div>
+          </motion.div>
+        </motion.div>
+      )}
+      {window.innerWidth < 1280 && (
+        <div className="w-screen h-screen mt-32">
+          <div className="relative top-0 h-screen w-screen">
+            <div className="absolute inset-0 flex items-center justify-center">
+              <Link
+                href={`/${nextProject.id}`}
+                className="flex flex-col-reverse items-center justify-center gap-2"
+              >
+                <div className="flex px-6 items-start gap-2">
+                  <p className="text-3xl text-center">{nextProject.name}</p>
+                </div>
+                <p className="text-sm opacity-60">Next Project</p>
+              </Link>
+            </div>
           </div>
-          <p className="text-sm">Next Project</p>
         </div>
-      </motion.div>
-    </motion.div>
+      )}
+    </>
   );
 }

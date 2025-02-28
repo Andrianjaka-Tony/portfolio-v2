@@ -30,18 +30,18 @@ export default function Project() {
 
   return (
     <>
-      <div className="z-10 py-3 px-6 xl:px-16 xl:py-8 xl:fixed flex justify-between top-0 left-0 w-screen">
+      <div className="z-10 py-3 px-6 xl:px-16 xl:py-8 lg:fixed flex justify-between top-0 left-0 w-screen">
         <Link
           href="/"
           scroll={false}
-          className="opacity-40 hover:opacity-100 duration-200 cursor-pointer hidden xl:block"
+          className="opacity-40 hover:opacity-100 duration-200 cursor-pointer hidden lg:block"
         >
           Back
         </Link>
-        <Link href="/" scroll={false} className="cursor-pointer xl:hidden">
+        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
           Tony Andrianjaka
         </Link>
-        <Link href="/" scroll={false} className="cursor-pointer xl:hidden">
+        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
           Back
         </Link>
       </div>
