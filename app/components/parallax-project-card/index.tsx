@@ -18,7 +18,7 @@ export default function ParallaxProjectCard({ image }: Props) {
   const yTransform = useTransform(scrollYProgress, [0, 1], ["0%", "-100%"]);
 
   return (
-    <motion.div ref={ref} className="bg-[#191919] px-8 w-full aspect-square">
+    <motion.div ref={ref} className="bg-[#191919] px-6 lg:px-8 w-full aspect-square">
       <motion.div style={{ top: topTransform, y: yTransform }} className="relative w-full left-0">
         <img loading="lazy" src={image} className="w-full left-0 object-cover h-auto" />
       </motion.div>
