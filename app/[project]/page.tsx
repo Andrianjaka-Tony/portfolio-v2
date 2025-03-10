@@ -84,13 +84,10 @@ export default function Project() {
             />
           </div>
           <div className="flex-1 pt-32 pb-16 px-6 xl:px-16 flex flex-col gap-8">
-            <ParallaxProjectCard image={foundProject?.image} />
-            <ParallaxProjectCard image="/images/test/t2.png" />
-            <ParallaxProjectCard image="/images/test/t3.png" />
-            <ParallaxProjectCard image="/images/test/t4.png" />
-            <ParallaxProjectCard image="/images/test/t5.png" />
-            <ParallaxProjectCard image="/images/test/t6.png" />
-            <ParallaxProjectCard image="/images/test/t7.png" />
+            <ParallaxProjectCard asset={{ source: foundProject?.image, video: false }} />
+            {foundProject.assets?.map((asset, index) => (
+              <ParallaxProjectCard key={index} asset={asset} />
+            ))}
           </div>
         </div>
         <NextProject index={nextProjectIndex} />

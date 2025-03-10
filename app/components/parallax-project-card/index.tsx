@@ -1,13 +1,14 @@
 "use client";
 
+import { ProjectAsset } from "@/app/type";
 import { motion, useScroll, useTransform } from "motion/react";
 import { useRef } from "react";
 
 type Props = {
-  image: string;
+  asset: ProjectAsset;
 };
 
-export default function ParallaxProjectCard({ image }: Props) {
+export default function ParallaxProjectCard({ asset }: Props) {
   const ref = useRef(null);
 
   const { scrollYProgress } = useScroll({
@@ -20,7 +21,15 @@ export default function ParallaxProjectCard({ image }: Props) {
   return (
     <motion.div ref={ref} className="bg-[#191919] px-6 lg:px-8 w-full aspect-square">
       <motion.div style={{ top: topTransform, y: yTransform }} className="relative w-full left-0">
-        <img loading="lazy" src={image} className="w-full left-0 object-cover h-auto" />
+        {asset.video && (
+          <video autoPlay loop muted playsInline className="w-full h-auto">
+            <source src={asset.source} type="video/mp4" />
+            Votre navigateur ne prend pas en charge la lecture de vidéos.
+          </video>
+        )}
+        {!asset.video && (
+          <img loading="lazy" src={asset.source} className="w-full left-0 object-cover h-auto" />
+        )}
       </motion.div>
     </motion.div>
   );
