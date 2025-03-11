@@ -2,6 +2,45 @@ import { Project } from "../type";
 
 export const projects: Project[] = [
   {
+    id: "vroom",
+    name: "Vroom Garage",
+    image: "/images/vroom.webp",
+    assets: [
+      {
+        source: "/vroom/vroom-1.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-2.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-3.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-4.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-5.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-6.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-7.webp",
+        video: false,
+      },
+      {
+        source: "/vroom/vroom-8.webp",
+        video: false,
+      },
+    ],
+  },
+  {
     id: "vahatra",
     name: "Vahatra Human Ressources",
     image: "/images/vahatra.webp",
@@ -90,11 +129,6 @@ export const projects: Project[] = [
         video: false,
       },
     ],
-  },
-  {
-    id: "home-renovation",
-    name: "Home Renovation Company",
-    image: "/images/home-renovation.webp",
   },
   {
     id: "apollo",
