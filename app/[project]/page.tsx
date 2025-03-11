@@ -53,35 +53,11 @@ export default function Project() {
             <div className="">
               <p className="text-3xl xl:text-2xl leading-tight">{foundProject?.name}</p>
             </div>
-            <div className="flex flex-col mt-16 gap-8 xl:hidden opacity-70 max-w-[600px]">
-              <p>
-                The blinking light caught her attention. She thought about it a bit and couldn't
-                remember ever noticing it before. That was strange since it was obvious the flashing
-                light had been there for years.
-              </p>
-              <p>
-                Ten more steps. If he could take ten more steps it would be over, but his legs
-                wouldn't move. He tried to will them to work, but they wouldn't listen to his brain.
-                Ten more steps and it would be over but it didn't appear he would "be able to do it.
-              </p>
+            <div className="flex flex-col mt-16 gap-8 xl:flex leading-normal opacity-70 xl:gap-4 xl:mt-auto max-w-[600px]">
+              {foundProject.descriptions?.map((description, index) => (
+                <p key={index}>{description}</p>
+              ))}
             </div>
-            <AnimeParagraphs
-              paragraphs={[
-                [
-                  "The blinking light caught her attention. She thought about it a bit and",
-                  "couldn't remember ever noticing it before. That was strange since it was",
-                  "obvious the flashing light had been there for years.",
-                ],
-                [
-                  "Ten more steps. If he could take ten more steps it would be over, but his",
-                  "legs wouldn't move. He tried to will them to work, but they wouldn't listen to",
-                  "his brain. Ten more steps and it would be over but it didn't appear he would",
-                  "be able to do it.",
-                ],
-              ]}
-              className="hidden xl:flex leading-normal opacity-70 gap-4 mt-auto whitespace-nowrap"
-              custom={0.3}
-            />
           </div>
           <div className="flex-1 pt-32 pb-16 px-6 xl:px-16 flex flex-col gap-8">
             <ParallaxProjectCard asset={{ source: foundProject?.image, video: false }} />
