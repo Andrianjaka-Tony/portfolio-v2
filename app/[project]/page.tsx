@@ -30,7 +30,7 @@ export default function Project() {
 
   return (
     <>
-      <div className="z-10 py-3 px-6 xl:px-16 xl:py-8 lg:fixed flex justify-between top-0 left-0 w-screen">
+      <div className="z-10 py-3 px-6 xl:px-16 xl:py-8 lg:fixed flex justify-between top-0 left-0 w-screen overflow-x-hidden">
         <Link
           href="/"
           scroll={false}

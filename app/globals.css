@@ -7,6 +7,10 @@
   font-family: "SF Pro Display", sans-serif;
 }
 
+::-webkit-scrollbar {
+  display: none;
+}
+
 :root {
   --foreground: #fff;
   --background: #000;
@@ -15,6 +19,7 @@
 body {
   color: var(--foreground);
   background: var(--background);
+  overflow-x: hidden;
 }
 
 .h-screen {
