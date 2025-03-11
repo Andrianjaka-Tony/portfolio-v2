@@ -5,6 +5,7 @@ import { AnimeParagraphs, AnimeRow } from "../components/anime-text/anime-word";
 import { ScrollTop } from "../components/scroll-top";
 import { useLoadingStore } from "../store/loading.store";
 import { ProjectLoader } from "../components/loader/project-loader";
+import { ReactNode } from "react";
 
 function Presentation() {
   return (
@@ -48,7 +49,7 @@ function Presentation() {
 
 type SectionItem = {
   titles?: string[];
-  values?: string[];
+  values?: string[] | ReactNode[];
 };
 
 function SectionItem({ titles = [], values = [] }: SectionItem) {
@@ -148,7 +149,23 @@ function GetInTouch() {
       items={[
         {
           titles: [],
-          values: ["Email", "Instagram", "X", "Linkedin", "Facebook"],
+          values: [
+            <a target="_blank" href="https://www.instagram.com/andrianjaka.tony/">
+              Instagram
+            </a>,
+            <a target="_blank" href="https://x.com/Andrianja_tony">
+              X
+            </a>,
+            <a
+              target="_blank"
+              href="https://www.linkedin.com/in/tony-andrianjakatsihoarana-388866283/"
+            >
+              Linkedin
+            </a>,
+            <a target="_blank" href="https://web.facebook.com/andrianjaka.tony">
+              Facebook
+            </a>,
+          ],
         },
       ]}
     />

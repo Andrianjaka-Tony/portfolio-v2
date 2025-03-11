@@ -9,7 +9,7 @@ type WordProps = {
 };
 
 type RowProps = {
-  rows: string[];
+  rows: string[] | ReactNode[];
   className?: string;
 };
 
