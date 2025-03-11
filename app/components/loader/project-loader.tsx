@@ -51,7 +51,7 @@ export function ProjectLoader() {
           {Math.round((loadingProgress * 100) / imagesToLoad.length)}%
         </div>
       )}
-      <div className="absolute inset-0 flex justify-center items-center text-5xl">
+      <div className="absolute inset-0 flex justify-center items-center text-xl md:text-2xl lg:text-3xl xl:text-5xl">
         <AnimatePresence>
           {displayName && (
             <AnimeText
@@ -74,7 +74,7 @@ export function ProjectLoader() {
           )}
         </AnimatePresence>
       </div>
-      <div className="absolute inset-0 flex justify-center items-center text-5xl leading-normal">
+      <div className="absolute inset-0 flex justify-center items-center text-xl md:text-2xl lg:text-3xl xl:text-5xl leading-normal">
         <AnimatePresence>
           {displayJob && (
             <AnimeText
