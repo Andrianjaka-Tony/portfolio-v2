@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, useMotionValue, useMotionValueEvent } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { ProjectBackground } from "./components/project/project-background";
 import { ProjectCard } from "./components/project/project-card";
 import { useState } from "react";
@@ -26,21 +26,27 @@ export default function Home() {
 
   return (
     <>
-      <div className="z-10 py-4 px-6 lg:py-8 fixed top-0 left-0 w-screen flex justify-between lg:justify-center gap-12 text-sm lg:text-lg">
-        <Link href="/" scroll={false} className="cursor-pointer hidden lg:block">
-          Work
-        </Link>
-        <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
-          Tony Andrianjaka
-        </Link>
-        <Link
-          href="/about"
-          scroll={false}
-          className="lg:opacity-40 lg:hover:opacity-100 duration-200 cursor-pointer"
+      {!isLoading && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          className="z-10 py-4 px-6 lg:py-8 fixed top-0 left-0 w-screen flex justify-between lg:justify-center gap-12 text-sm lg:text-lg"
         >
-          About
-        </Link>
-      </div>
+          <Link href="/" scroll={false} className="cursor-pointer hidden lg:block">
+            Work
+          </Link>
+          <Link href="/" scroll={false} className="cursor-pointer lg:hidden">
+            Tony Andrianjaka
+          </Link>
+          <Link
+            href="/about"
+            scroll={false}
+            className="lg:opacity-40 lg:hover:opacity-100 duration-200 cursor-pointer"
+          >
+            About
+          </Link>
+        </motion.div>
+      )}
       <div
         onMouseMove={(event) => {
           setMousePosition({ x: event.clientX, y: event.clientY });
